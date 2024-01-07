@@ -12,10 +12,14 @@ logging:
 
 spring:
   datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    driver-class-name: org.h2.Driver
     url: jdbc:mysql://localhost:3306/board
     username: hadueat
     password: 1q2w3e
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: create
