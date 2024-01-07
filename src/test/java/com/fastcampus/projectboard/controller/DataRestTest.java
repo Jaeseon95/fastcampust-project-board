@@ -3,6 +3,7 @@ package com.fastcampus.projectboard.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+@Disabled("Spring Data REST 통합테스트는 불필요하기 때문에 제외시킴")
+// 내가 작성한 API가 아니라 기본으로 제공해줌
 //Controller와 상관된 애들만 로드함 data REST와 관련된 configuration
 //@WebMvcTest
 @DisplayName("Data REST - API 테스트")
