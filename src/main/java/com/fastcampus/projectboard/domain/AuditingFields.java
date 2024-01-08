@@ -19,7 +19,8 @@ import lombok.ToString;
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public class AuditingFields {
+// 추상클래스로 선언한 이유는 Auditing Fields단독으로 사용되지 않기 때문
+public abstract class AuditingFields {
 	// jpa auditing
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	@CreatedDate

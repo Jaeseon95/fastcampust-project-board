@@ -40,7 +40,8 @@ spring:
     rest:
       base-path: /api
       detection-strategy: annotated
-
+  thymeleaf3:
+    decoupled-logic: true
 ---
 #
 ## h2 db는 다양한 호환성 모드를 지원 mode에 설정한다.
