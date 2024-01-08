@@ -1,3 +1,6 @@
+-- 테스트 계정
+insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values ('hadueat','1q2w3e', 'hadu', 'hadueat@gmail.com', 'test hadu', now(), 'hadu', now(), 'hadu');
+-- 게시글 123개
 insert into article (title, content, hashtag, created_by, modified_by, created_at, modified_at) values ('nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam', 'Sed sagittis.', null, 'Kissiah', 'Lucille', '2023-04-16 12:48:46', '2023-01-19 10:29:31');
 insert into article (title, content, hashtag, created_by, modified_by, created_at, modified_at) values ('ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor', 'Suspendisse potenti.', '#Crimson', 'Tom', 'Rosemaria', '2023-08-02 02:19:13', '2023-05-18 10:31:24');
 insert into article (title, content, hashtag, created_by, modified_by, created_at, modified_at) values ('iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque', 'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', '#Puce', 'Margareta', 'Conchita', '2023-12-13 18:36:56', '2023-04-06 16:12:58');
