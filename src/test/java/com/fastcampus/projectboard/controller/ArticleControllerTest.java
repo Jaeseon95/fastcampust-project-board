@@ -14,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-//@Disabled("개발 중")
 @DisplayName("View 컨트롤러 - 게시글")
 @WebMvcTest(ArticleController.class)
 class ArticleControllerTest {
@@ -54,6 +53,7 @@ class ArticleControllerTest {
             .andExpect(model().attributeExists("articleComments"));
     }
 
+    @Disabled("개발 중")
     @DisplayName("[view] [GET] 게시글 검색 페이지")
     @Test
     public void givenNothing_whenRequestingArticleSearchView_thenReturnArticleSearchView()
@@ -67,6 +67,7 @@ class ArticleControllerTest {
             .andExpect(view().name("articles/search"));
     }
 
+    @Disabled("개발 중")
     @DisplayName("[view] [GET] 해시태그 검색 페이지")
     @Test
     public void givenNothing_whenRequestingArticleHashtageSearchView_thenReturnArticleHashtagSearchView()
