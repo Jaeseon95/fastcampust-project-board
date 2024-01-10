@@ -3,6 +3,9 @@ package com.fastcampus.projectboard.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
+import com.fastcampus.projectboard.domain.ArticleComment;
+import com.fastcampus.projectboard.domain.UserAccount;
+import com.fastcampus.projectboard.repository.UserAccountRepository;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,22 +31,36 @@ class ArticleCommentServiceTest {
 	private ArticleRepository articleRepository;
 	@Mock
 	private ArticleCommentRepository articleCommentRepository;
+	@Mock
+	private UserAccountRepository userAccountRepository;
 
 	@DisplayName("게시글 ID로 조회하면, 해당 게시글의 댓글 목록을 가져온다.")
 	@Test
 	void  givenArticleId_whenSearchingArticleComments_thenReturnsArticleComment(){
 		//Given
 		Long articleId = 1L;
-		given(articleRepository.findById(articleId)).willReturn(Optional.of(
-			Article.of("title", "content", "#spring")
-		));
+		ArticleComment expected = createArticleComment("content");
+		given(articleCommentRepository.findById(articleId)).willReturn(List.of(expected));
 
 		//When
-		List<ArticleCommentDto> articleComments = sut.searchArticleComment(1L);
+		List<ArticleCommentDto> actual = sut.searchArticleComment(1L);
 
 		//Then
-		assertThat(articleComments).isNotNull();
-		then(articleRepository).should().findById(articleId);
+		assertThat(actual).hasSize(1)
+			.first().hasFieldOrPropertyWithValue("content", expected.getContent());
+		//then(articleRepository).should().findByA
+
+	}
+
+	private ArticleComment createArticleComment(String content) {
+		return ArticleComment.of(createUserAccount(),
+			Article.of(createUserAccount(),"title","content", "#hastag"),
+			content
+		);
+	}
+
+	private UserAccount createUserAccount() {
+		return UserAccount.of("test", "test", "test@gmail.com", "test", null);
 	}
 
 }

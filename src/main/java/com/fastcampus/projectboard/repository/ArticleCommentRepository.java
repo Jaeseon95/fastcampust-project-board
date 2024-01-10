@@ -1,5 +1,6 @@
 package com.fastcampus.projectboard.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -17,6 +18,9 @@ public interface ArticleCommentRepository extends
 	, QuerydslPredicateExecutor<ArticleComment>
 	, QuerydslBinderCustomizer<QArticleComment>
 {
+
+	// 게시글의 Id이기 때문에 언더스코어가 들어감
+	List<ArticleComment> findByArticle_Id(Long articleId);
 	@Override
 	default void customize(QuerydslBindings bindings, QArticleComment root){
 		// 특정 property에 대해서만 검색을 열기
