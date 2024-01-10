@@ -1,8 +1,10 @@
 package com.fastcampus.projectboard.controller;
 
 import com.fastcampus.projectboard.domain.type.SearchType;
+import com.fastcampus.projectboard.dto.response.ArticleResponse;
+import com.fastcampus.projectboard.dto.response.ArticleWithCommentsResponse;
 import com.fastcampus.projectboard.service.ArticleService;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -23,18 +25,20 @@ public class ArticleController {
 
     @GetMapping
     public String articles(
-        @RequestParam(required = false) SearchType searchType,
-        @RequestParam(required = false) String searchValue,
+        @RequestParam(required = false, name = "searchType") SearchType searchType,
+        @RequestParam(required = false, name = "searchValue") String searchValue,
         @PageableDefault(size = 10, sort = "createdAt", direction = Direction.DESC) Pageable pageable,
         ModelMap map){
-        map.addAttribute("articles", articleService.searchArticles(searchType,searchValue,pageable).map(ArticleResponse));
+        map.addAttribute("articles", articleService.searchArticles(searchType,searchValue,pageable).map(
+            ArticleResponse::from));
         return "articles/index";
     }
 
     @GetMapping("/{articleId}")
     public String article(@PathVariable("articleId") Long articleId, ModelMap map){
-        map.addAttribute("article", "article");  // TODO: 구현할 때 실제 데이터를 넣어야함
-        map.addAttribute("articleComments",List.of());
+        ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticle(articleId));
+        map.addAttribute("article", article);
+        map.addAttribute("articleComments",article.articleCommentResponse());
         return "articles/detail";
     }
 
