@@ -24,7 +24,6 @@ import com.fastcampus.projectboard.repository.ArticleRepository;
 @DisplayName("비즈니스 로직 - 댓글")
 @ExtendWith(MockitoExtension.class)
 class ArticleCommentServiceTest {
-
 	@InjectMocks
 	private ArticleCommentService sut;
 	@Mock
@@ -40,7 +39,7 @@ class ArticleCommentServiceTest {
 		//Given
 		Long articleId = 1L;
 		ArticleComment expected = createArticleComment("content");
-		given(articleCommentRepository.findById(articleId)).willReturn(List.of(expected));
+		given(articleCommentRepository.findById(articleId)).willReturn(Optional.of(expected));
 
 		//When
 		List<ArticleCommentDto> actual = sut.searchArticleComment(1L);

@@ -1,5 +1,6 @@
-package com.fastcampus.projectboard.dto;
+package com.fastcampus.projectboard.dto.response;
 
+import com.fastcampus.projectboard.dto.ArticleCommentDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.LocalDateTime;
